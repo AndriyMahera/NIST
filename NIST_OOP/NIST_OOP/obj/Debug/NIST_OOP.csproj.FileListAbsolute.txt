@@ -1,0 +1,13 @@
+c:\users\andriymahera\documents\visual studio 2012\Projects\NIST_OOP\NIST_OOP\bin\Debug\NIST_OOP.exe.config
+c:\users\andriymahera\documents\visual studio 2012\Projects\NIST_OOP\NIST_OOP\bin\Debug\NIST_OOP.exe
+c:\users\andriymahera\documents\visual studio 2012\Projects\NIST_OOP\NIST_OOP\bin\Debug\NIST_OOP.pdb
+c:\users\andriymahera\documents\visual studio 2012\Projects\NIST_OOP\NIST_OOP\obj\Debug\NIST_OOP.csprojResolveAssemblyReference.cache
+c:\users\andriymahera\documents\visual studio 2012\Projects\NIST_OOP\NIST_OOP\obj\Debug\MainWindow.baml
+c:\users\andriymahera\documents\visual studio 2012\Projects\NIST_OOP\NIST_OOP\obj\Debug\MainWindow.g.cs
+c:\users\andriymahera\documents\visual studio 2012\Projects\NIST_OOP\NIST_OOP\obj\Debug\App.g.cs
+c:\users\andriymahera\documents\visual studio 2012\Projects\NIST_OOP\NIST_OOP\obj\Debug\NIST_OOP_MarkupCompile.cache
+c:\users\andriymahera\documents\visual studio 2012\Projects\NIST_OOP\NIST_OOP\obj\Debug\NIST_OOP.g.resources
+c:\users\andriymahera\documents\visual studio 2012\Projects\NIST_OOP\NIST_OOP\obj\Debug\NIST_OOP.Properties.Resources.resources
+c:\users\andriymahera\documents\visual studio 2012\Projects\NIST_OOP\NIST_OOP\obj\Debug\NIST_OOP.csproj.GenerateResource.Cache
+c:\users\andriymahera\documents\visual studio 2012\Projects\NIST_OOP\NIST_OOP\obj\Debug\NIST_OOP.exe
+c:\users\andriymahera\documents\visual studio 2012\Projects\NIST_OOP\NIST_OOP\obj\Debug\NIST_OOP.pdb
