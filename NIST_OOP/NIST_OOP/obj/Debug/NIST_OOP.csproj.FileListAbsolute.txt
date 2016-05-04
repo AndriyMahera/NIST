@@ -11,3 +11,16 @@ c:\users\andriymahera\documents\visual studio 2012\Projects\NIST_OOP\NIST_OOP\ob
 c:\users\andriymahera\documents\visual studio 2012\Projects\NIST_OOP\NIST_OOP\obj\Debug\NIST_OOP.csproj.GenerateResource.Cache
 c:\users\andriymahera\documents\visual studio 2012\Projects\NIST_OOP\NIST_OOP\obj\Debug\NIST_OOP.exe
 c:\users\andriymahera\documents\visual studio 2012\Projects\NIST_OOP\NIST_OOP\obj\Debug\NIST_OOP.pdb
+C:\Users\AndriyMahera\Documents\Visual Studio 2012\GitHub\NIST_OOP\NIST_OOP\bin\Debug\NIST_OOP.exe.config
+C:\Users\AndriyMahera\Documents\Visual Studio 2012\GitHub\NIST_OOP\NIST_OOP\obj\Debug\NIST_OOP.exe
+C:\Users\AndriyMahera\Documents\Visual Studio 2012\GitHub\NIST_OOP\NIST_OOP\obj\Debug\NIST_OOP.pdb
+C:\Users\AndriyMahera\Documents\Visual Studio 2012\GitHub\NIST_OOP\NIST_OOP\obj\Debug\NIST_OOP.csprojResolveAssemblyReference.cache
+C:\Users\AndriyMahera\Documents\Visual Studio 2012\GitHub\NIST_OOP\NIST_OOP\obj\Debug\MainWindow.baml
+C:\Users\AndriyMahera\Documents\Visual Studio 2012\GitHub\NIST_OOP\NIST_OOP\obj\Debug\MainWindow.g.cs
+C:\Users\AndriyMahera\Documents\Visual Studio 2012\GitHub\NIST_OOP\NIST_OOP\obj\Debug\App.g.cs
+C:\Users\AndriyMahera\Documents\Visual Studio 2012\GitHub\NIST_OOP\NIST_OOP\obj\Debug\NIST_OOP_MarkupCompile.cache
+C:\Users\AndriyMahera\Documents\Visual Studio 2012\GitHub\NIST_OOP\NIST_OOP\obj\Debug\NIST_OOP.g.resources
+C:\Users\AndriyMahera\Documents\Visual Studio 2012\GitHub\NIST_OOP\NIST_OOP\obj\Debug\NIST_OOP.Properties.Resources.resources
+C:\Users\AndriyMahera\Documents\Visual Studio 2012\GitHub\NIST_OOP\NIST_OOP\obj\Debug\NIST_OOP.csproj.GenerateResource.Cache
+C:\Users\AndriyMahera\Documents\Visual Studio 2012\GitHub\NIST_OOP\NIST_OOP\bin\Debug\NIST_OOP.exe
+C:\Users\AndriyMahera\Documents\Visual Studio 2012\GitHub\NIST_OOP\NIST_OOP\bin\Debug\NIST_OOP.pdb
