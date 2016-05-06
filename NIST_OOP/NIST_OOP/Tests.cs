@@ -10,15 +10,15 @@ namespace NIST_OOP
     {
         abstract public class Test
         {
-            protected StringBuilder sBuilder;
+            protected string str;
             protected double PValue;
             public double PVALUE
             {
                 get { return this.PValue; }
             }
-            public Test(StringBuilder sbl)
+            public Test(string s)
             {
-                this.sBuilder=sbl;
+                this.str=s;
             }
             abstract public void PerformTest();
         }
@@ -28,11 +28,11 @@ namespace NIST_OOP
             private double Sobs;
             private int count;
 
-            public Test1(StringBuilder sbl):base(sbl){}
+            public Test1(string s):base(s){}
             public override void PerformTest()
             {
-                this.count = Function.CountNotZero(this.sBuilder);
-                this.Sobs = Math.Abs(this.count) / Math.Sqrt(this.sBuilder.Length);
+                this.count = Function.CountNotZero(this.str);
+                this.Sobs = Math.Abs(this.count) / Math.Sqrt(this.str.Length);
                 this.PValue = SpecialFunction.erfc(this.Sobs / Math.Sqrt(2));
             }
         }
@@ -43,13 +43,31 @@ namespace NIST_OOP
             private int[] arr;
             private const int N = 20;
 
-            public Test2(StringBuilder sbl) : base(sbl) { }
+            public Test2(string s) : base(s) { }
 
             public override void PerformTest()
             {
-                this.arr = Function.CountAmountInBlock(this.sBuilder.ToString(),N);
-                this.Xi = Function.FindXi2(arr,sBuilder.Length,N);
+                this.arr = Function.CountAmountInBlock(this.str,N);
+                this.Xi = Function.FindXi2(arr,str.Length,N);
                 PValue = SpecialFunction.igamc(5, this.Xi / 2);
+            }
+        }
+
+        public class Test3 : Test
+        {
+            private double Xi, p;
+            private int countOfChange;
+
+            public Test3(string s) : base(s) { }
+
+            public override void PerformTest()
+            {
+                if (Function.CheckCondition(this.str, ref this.p))
+                {
+                    this.countOfChange = Function.CountChange(this.str);
+                    this.Xi = Function.FindArgumentForTest3(this.countOfChange,this.str.Length,this.p);
+                    this.PValue = SpecialFunction.erfc(this.Xi);
+                }
             }
         }
         

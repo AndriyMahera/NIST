@@ -64,14 +64,14 @@ namespace NIST_OOP
             digitStr = StringOperation.FormDigitString(mainString);
             binaryStr = StringOperation.FormBinaryString(digitStr);
 
-            StringBuilder Line = binaryStr.ToStringBuilder();
-
-            Tests.Test1 test1 = new Tests.Test1(Line);
+            Tests.Test1 test1 = new Tests.Test1(binaryStr);
             test1.PerformTest(); TextBox1.Text = test1.PVALUE.ToString("F6");
 
-            Tests.Test2 test2 = new Tests.Test2(Line);
+            Tests.Test2 test2 = new Tests.Test2(binaryStr);
             test2.PerformTest(); TextBox2.Text = test2.PVALUE.ToString("F6");
 
+            Tests.Test3 test3 = new Tests.Test3(binaryStr);
+            test3.PerformTest(); TextBox3.Text = test3.PVALUE.ToString("F6");
 
             this.FillCheckBox();
         }
