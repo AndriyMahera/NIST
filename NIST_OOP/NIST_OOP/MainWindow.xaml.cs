@@ -22,15 +22,59 @@ namespace NIST_OOP
     /// </summary>
     public partial class MainWindow : Window
     {
-        string mainString;
+        private string mainString;
+        private const double standardP = 0.01;
+        private string binaryStr;
+        private List<int> digitStr = new List<int>();
+
         public MainWindow()
         {
             InitializeComponent();
         }
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            
+        }
+
+        private void FillCheckBox()
+        {
+            List<CheckBox> checkboxes = controls.Children.OfType<CheckBox>().ToList();
+            List<TextBox> textboxes = controls.Children.OfType<TextBox>().ToList();
+            double toCon;
+            for (int i = 0; i < checkboxes.Count; i++)
+            {
+                try
+                {
+                    toCon = Convert.ToDouble(textboxes[i + 1].Text);
+                    if (toCon > standardP)
+                    {
+                        checkboxes[i].IsChecked = true;
+                    }
+                }
+                catch (Exception) { }
+            }
+        }
+
+        private void Perform_Click(object sender, RoutedEventArgs e)
+        {
             mainString = TextBox0.Text.Length == 0 ? File.ReadAllText("NIST.txt") : TextBox0.Text;
             mainString = StringOperation.FilterText(mainString);
+            TextBox0.Text = mainString;
+
+            digitStr = StringOperation.FormDigitString(mainString);
+            binaryStr = StringOperation.FormBinaryString(digitStr);
+
+            StringBuilder Line = binaryStr.ToStringBuilder();
+
+            Tests.Test1 test1 = new Tests.Test1(Line);
+            test1.PerformTest(); TextBox1.Text = test1.PVALUE.ToString("F6");
+
+            Tests.Test2 test2 = new Tests.Test2(Line);
+            test2.PerformTest(); TextBox2.Text = test2.PVALUE.ToString("F6");
+
+
+            this.FillCheckBox();
         }
+        
     }
 }

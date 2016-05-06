@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NIST_OOP
 {
-    class StringOperation
+    static class StringOperation
     {
         public const string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ .,;-'";
         public static string FilterText(string text)
@@ -51,6 +51,12 @@ namespace NIST_OOP
                 //str.Append(" ");
             }
             return str.ToString();
+        }
+        public static StringBuilder ToStringBuilder(this string str)
+        {
+            StringBuilder stb = new StringBuilder();
+            stb.Append(str);
+            return stb;
         }
     }
 }
