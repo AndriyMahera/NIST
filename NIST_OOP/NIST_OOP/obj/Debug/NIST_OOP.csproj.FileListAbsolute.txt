@@ -24,3 +24,5 @@ C:\Users\AndriyMahera\Documents\Visual Studio 2012\GitHub\NIST_OOP\NIST_OOP\obj\
 C:\Users\AndriyMahera\Documents\Visual Studio 2012\GitHub\NIST_OOP\NIST_OOP\obj\Debug\NIST_OOP.csproj.GenerateResource.Cache
 C:\Users\AndriyMahera\Documents\Visual Studio 2012\GitHub\NIST_OOP\NIST_OOP\bin\Debug\NIST_OOP.exe
 C:\Users\AndriyMahera\Documents\Visual Studio 2012\GitHub\NIST_OOP\NIST_OOP\bin\Debug\NIST_OOP.pdb
+C:\Users\AndriyMahera\Documents\Visual Studio 2012\GitHub\NIST_OOP\NIST_OOP\bin\Debug\MathNet.Numerics.dll
+C:\Users\AndriyMahera\Documents\Visual Studio 2012\GitHub\NIST_OOP\NIST_OOP\bin\Debug\MathNet.Numerics.xml
