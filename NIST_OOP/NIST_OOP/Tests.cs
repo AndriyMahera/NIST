@@ -221,6 +221,56 @@ namespace NIST_OOP
             }
 
         }
+        public class Test10 : Test
+        {
+            private string sequence1, sequence2, sequence3;
+            private const int M = 6;
+            private double PValue1, PValue2, w1, w2, w3;
+            private List<int> list1, list2, list3;
+
+            public Test10(string s) : base(s) { }
+
+            public override void PerformTest()
+            {
+                this.sequence1 = this.str; this.sequence2 = this.str; this.sequence3 = this.str;
+                //додаємо хвости 
+                Function.AddTail(ref this.sequence1, M);
+                Function.AddTail(ref this.sequence2, M - 1);
+                Function.AddTail(ref this.sequence3, M - 2);
+                //лісти квадратних кількостей входжень
+                this.list1 = Function.FormOverlapList(this.sequence1, M);
+                this.list2 = Function.FormOverlapList(this.sequence2, M - 1);
+                this.list3 = Function.FormOverlapList(this.sequence3, M - 2);
+                this.w1 = Math.Pow(2, M) / this.sequence1.Length * this.list1.Sum() - this.sequence1.Length;
+                this.w2 = Math.Pow(2, M - 1) / this.sequence2.Length * this.list2.Sum() - this.sequence2.Length;
+                this.w3 = Math.Pow(2, M - 2) / this.sequence3.Length * this.list3.Sum() - this.sequence3.Length;
+
+                this.PValue1 = SpecialFunction.igamc(Math.Pow(2, M - 2), (this.w1 - this.w2) / 2.0);
+                this.PValue2 = SpecialFunction.igamc(Math.Pow(2, M - 3), (this.w1 - 2 * this.w2 + this.w3) / 2.0);
+                this.PValue = Math.Min(this.PValue1,this.PValue2);
+            }
+        }
+        public class Test11 : Test
+        {
+            private string sequence1, sequence2;
+
+            public Test11(string str) : base(s) { }
+
+            public override void PerformTest()
+            {
+                sequence1 = Line; sequence2 = Line;
+                Function.AddTail(ref sequence1, m11);
+                AddTail(ref sequence2, m11 + 1);
+                var list4 = Function.FormOverlapListFreq(sequence1, m11);
+                var list5 = Function.FormOverlapListFreq(sequence2, m11 + 1);
+                f1 = Function.CalculateF(list4);
+                f2 = Function.CalculateF(list5);
+                var gg = f1 - f2;
+                XI11 = 2 * Line.Length * (Math.Log(2, Math.E) - (f1 - f2));
+                PValue11 = SpecialFunction.igamc(Math.Pow(2, m11 - 1), XI11 / 2.0);
+                RT11.Text = PValue11.ToString("F6");
+            }
+        }
        
     }
 }

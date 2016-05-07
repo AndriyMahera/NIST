@@ -384,5 +384,52 @@ namespace NIST_OOP
             }
             return SUM;
         }
+
+        //добавити хвіст для послідовності
+        public static void AddTail(ref string input, int number)
+        {
+            for (int i = 0; i < number - 1; i++)
+            {
+                input += input[i];
+            }
+        }
+        //список всіх накладних входжень
+        public static List<int> FormOverlapList(String str, int number)
+        {
+            List<int> lint = new List<int>();
+            for (int i = 0; i < (int)Math.Pow(2, number); i++)
+            {
+                String res = "";
+                res = FormCombination(res, i, number);
+                var v = CountOverlapingSerials(str, res);
+                lint.Add(v * v);
+            }
+            return lint;
+        }
+        //накладні входження 11
+        public static int CountOverlapingSerials(String str, String temp)
+        {
+            int output = 0 ;
+                int index = 0;
+                while (index < str.Length - temp.Length)
+                {
+                    if (temp == str.Substring(index, temp.Length))
+                        output += 1;
+                    index += 1;
+                }
+            return output;
+        }
+        public static List<double> FormOverlapListFreq(String str, int number)
+        {
+            List<double> ldouble = new List<double>();
+            for (int i = 0; i < (int)Math.Pow(2, number); i++)
+            {
+                String res = "";
+                res = FormCombination(res, i, number);
+                var v = CountOverlapingSerials(str, res);
+                ldouble.Add(v / (double)str.Length);
+            }
+            return ldouble;
+        }
     }
 }

@@ -98,6 +98,9 @@ namespace NIST_OOP
             Tests.Test9 test9 = new Tests.Test9(this.theLongest);
             test9.PerformTest(); TextBox9.Text = test9.PVALUE.ToString("F6");
 
+            Tests.Test10 test10 = new Tests.Test10(this.binaryStr);
+            test10.PerformTest(); TextBox10.Text = test10.PVALUE.ToString("F6");
+
             this.FillCheckBox();
         }
         
