@@ -89,6 +89,9 @@ namespace NIST_OOP
             Tests.Test7 test7 = new Tests.Test7(this.binaryStr);
             test7.PerformTest(); TextBox7.Text = test7.PVALUE.ToString("F6");
 
+            Tests.Test8 test8 = new Tests.Test8(this.binaryStr);
+            test8.PerformTest(); TextBox8.Text = test8.PVALUE.ToString("F6");
+
             this.FillCheckBox();
         }
         

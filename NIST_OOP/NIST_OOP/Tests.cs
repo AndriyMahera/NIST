@@ -156,6 +156,39 @@ namespace NIST_OOP
                 this.PValue=result / Math.Pow(2, TEMPLATE_LENGTH);
             }
         }
+        public class Test8 : Test
+        {
+            private double result = 0, y, n, Xi, p;
+            private string res;
+            private int[] amountArr;
+            private List<string> frames;
+            private const int NUM_IN_FRAMES = 100;
+            private const int TEMPLATE_LENGTH = 6;
+            //Константи для тесту 8
+            private static double[] PI = { 0.364091, 0.185659, 0.139381, 0.100571, 0.070432, 0.139865 };
+
+            public Test8(string s) : base(s) { }
+
+            public override void PerformTest()
+            {
+                this.frames = Function.CutOnFrames(this.str, NUM_IN_FRAMES);
+                //64 -к-ть шаблонів для 2^6
+                for (int i = 0; i < (int)Math.Pow(2, TEMPLATE_LENGTH); i++)
+                {
+                    this.res = "";
+                    this.res = Function.FormCombination(this.res, i, TEMPLATE_LENGTH);
+                    //масив к-ті входжень
+                    this.amountArr = Function.CountOverlaping(this.frames, this.res);
+                    //100 в блоці
+                    this.y = (NUM_IN_FRAMES - this.res.Length + 1) / Math.Pow(2, this.res.Length);
+                    this.n = this.y / 2;
+                    this.Xi = Function.CalcXI8(this.amountArr, NUM_IN_FRAMES, PI);
+                    this.p = SpecialFunction.igamc(2.5, this.Xi / 2.0);
+                    this.result += this.p;
+                }
+                this.PValue=result / Math.Pow(2, TEMPLATE_LENGTH);
+            }
+        }
        
     }
 }

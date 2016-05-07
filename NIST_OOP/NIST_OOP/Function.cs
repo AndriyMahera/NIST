@@ -14,6 +14,7 @@ namespace NIST_OOP
         public  static readonly int R = 49, K = 5;
         //Коефи при формулі для тесту рангів матриць
         private static double[] indices5 = { 0.2888, 0.5776, 0.1336 };
+        
 
         //Порахувати баланс одиниць/нулів
         public static int CountNotZero(string sbl)
@@ -313,5 +314,46 @@ namespace NIST_OOP
             return output;
         }
 
+
+        //накладні входження
+        public static int[] CountOverlaping(List<String> input, String temp)
+        {
+            int[] interim = new int[input.Count];
+            int[] output = new int[6];
+            int i = 0;
+            foreach (String str in input)
+            {
+                int index = 0;
+                while (index < str.Length - temp.Length)
+                {
+                    if (temp == str.Substring(index, temp.Length))
+                        interim[i] += 1;
+                    index += 1;
+                }
+                i += 1;
+            }
+            foreach (int el in interim)
+            {
+                switch (el)
+                {
+                    case 0: output[0] += 1; break;
+                    case 1: output[1] += 1; break;
+                    case 2: output[2] += 1; break;
+                    case 3: output[3] += 1; break;
+                    case 4: output[4] += 1; break;
+                    default: output[5] += 1; break;
+                }
+            }
+            return output;
+        }
+        public static double CalcXI8(int[] input, int N, double[] input2)
+        {
+            double result = 0;
+            for (int i = 0; i < input.Length; i++)
+            {
+                result += (Math.Pow(input[i] - N * input2[i], 2) / N / input2[i]);
+            }
+            return result;
+        }
     }
 }
