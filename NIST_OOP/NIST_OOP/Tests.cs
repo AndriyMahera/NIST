@@ -182,12 +182,44 @@ namespace NIST_OOP
                     //100 в блоці
                     this.y = (NUM_IN_FRAMES - this.res.Length + 1) / Math.Pow(2, this.res.Length);
                     this.n = this.y / 2;
-                    this.Xi = Function.CalcXI8(this.amountArr, NUM_IN_FRAMES, PI);
+                    this.Xi = Function.CalcXI8(this.amountArr, frames.Count, PI);
                     this.p = SpecialFunction.igamc(2.5, this.Xi / 2.0);
                     this.result += this.p;
                 }
                 this.PValue=result / Math.Pow(2, TEMPLATE_LENGTH);
             }
+        }
+        public class Test9 : Test
+        {
+            private int Q;
+            private double sum, f, c, u;
+            private List<string> frames,frame_test = new List<string>();
+            private Dictionary<string, int> mayerDict;
+            private const int TEMPLATE_LENGTH = 6;
+            private const int NUM_IN_FRAMES = 6;
+            //для 9 тесту константи
+            private const double  EXPECTED_VALUE = 5.2177052,VARIANCE = 2.954;
+
+            public Test9(string s) : base(s) { }
+
+            public override void PerformTest()
+            {
+                this.Q = 10 * (int)Math.Pow(2, TEMPLATE_LENGTH);
+                this.frames = Function.CutOnFrames(this.str,NUM_IN_FRAMES);               
+                //розбивка на тестові та ініціалізаційні
+                for (int i = 0; i < Q; i++)
+                {
+                    this.frame_test.Add(this.frames[i]);
+                }
+                this.frames.RemoveRange(0, this.Q);
+                this.mayerDict = Function.UniquesDictForMayer(TEMPLATE_LENGTH,this.frames,this.frame_test);
+                this.sum = Function.FindLogSum(this.frames, mayerDict, Q);
+                this.f = sum / (double)this.frames.Count;
+                this.c = 0.7 - 0.8 / 6.0 + (4 + 32.0 / 6.0) * Math.Pow(this.frames.Count, -3.0 / 6.0) / 15.0;
+                this.u = c * Math.Sqrt(VARIANCE / (double)this.frames.Count);
+                this.PValue = SpecialFunction.erfc(Math.Abs((this.f - EXPECTED_VALUE) / this.u / Math.Sqrt(2)));
+            }
+
         }
        
     }

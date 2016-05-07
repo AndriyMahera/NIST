@@ -355,5 +355,34 @@ namespace NIST_OOP
             }
             return result;
         }
+
+
+        //Словник унікальних
+        public static Dictionary<string, int> UniquesDictForMayer(int m,List<string> frames,List<string> frame_test)
+        {
+            Dictionary<string, int> mayer = new Dictionary<string, int>();
+            List<string> uniques = new List<string>();
+            for (int i = 0; i < (int)Math.Pow(2, m); i++)
+                mayer.Add(Function.FormCombination("", i, m), 0);
+
+            for (int j=0; j < frame_test.Count; j++)
+            {
+                mayer[frame_test[j]] = j;
+            }
+
+            return mayer;
+        }
+        //логарифмічна сума inputL  -досліджувана послідовність ,inputM  - клас з обчисленими останніми появами Q - довжина ініціалізійного масиву
+        public static double FindLogSum(List<String> inputL, Dictionary<string,int> inputM, int Q)
+        {
+            double SUM = 0;
+            for (int i = 0; i < inputL.Count; i++)
+            {
+                string key = inputL[i];
+                SUM += Math.Log(i+Q-inputM[key],2);
+                inputM[key] = i + Q;
+            }
+            return SUM;
+        }
     }
 }

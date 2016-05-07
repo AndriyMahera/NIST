@@ -24,7 +24,7 @@ namespace NIST_OOP
     {
         private string mainString,mainStringLong;
         private const double standardP = 0.01;
-        private string binaryStr,binaryStrLong;
+        private string binaryStr,binaryStrLong,theLongest;
         private List<int> digitStr = new List<int>(),digitStrLong=new List<int>();
 
         public MainWindow()
@@ -68,6 +68,9 @@ namespace NIST_OOP
             this.digitStrLong = StringOperation.FormDigitString(this.mainStringLong);
             this.binaryStrLong = StringOperation.FormBinaryString(this.digitStrLong);
 
+            for (int i = 0; i < 6; i++)
+                this.theLongest += this.binaryStrLong;
+
             Tests.Test1 test1 = new Tests.Test1(this.binaryStr);
             test1.PerformTest(); TextBox1.Text = test1.PVALUE.ToString("F6");
 
@@ -91,6 +94,9 @@ namespace NIST_OOP
 
             Tests.Test8 test8 = new Tests.Test8(this.binaryStr);
             test8.PerformTest(); TextBox8.Text = test8.PVALUE.ToString("F6");
+
+            Tests.Test9 test9 = new Tests.Test9(this.theLongest);
+            test9.PerformTest(); TextBox9.Text = test9.PVALUE.ToString("F6");
 
             this.FillCheckBox();
         }
