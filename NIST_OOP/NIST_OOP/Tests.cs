@@ -316,6 +316,7 @@ namespace NIST_OOP
             {
 
                 this.normalArr=Function.NormalizeArray(this.str);
+                int h = this.str.Length;
                 this.listSum.Add(0);
                 Function.FindMaxSum(this.normalArr, 0, this.listSum);
                 this.listSum.Add(0);
@@ -369,6 +370,43 @@ namespace NIST_OOP
                 }
                 else
                     this.PValue = 0;
+            }
+        }
+        public class Test15 : Test
+        {
+            private double[] vMatrix,lMatrix,T15;
+            private const int IN_FRAME = 1000;
+            private List<string> frames;
+            private int g;
+            private double mean,Xi;
+            private double[] PI_15 = { 0.010417, 0.03125, 0.125, 0.5, 0.25, 0.0625, 0.020833 };
+            
+            public Test15(string s) : base(s) { }
+
+            public override void PerformTest()
+            {
+                this.frames=Function.CutOnFrames(this.str, IN_FRAME);
+                int yutr = this.str.Length;
+                this.lMatrix = new double[this.frames.Count];
+                for (int i = 0; i < this.lMatrix.Length; i++)
+                {
+                    this.lMatrix[i] = SpecialFunction.BerlekampMassey(Function.StrToByte(frames[i]));
+                }
+                this.g = IN_FRAME % 2 == 0 ? -1 : 1;
+                this.mean = IN_FRAME / 2.0 + (9 + g) / 36.0 - (IN_FRAME / 3.0 + 2 / 9.0) / Math.Pow(2, IN_FRAME);
+                this.T15 = new double[this.lMatrix.Length];
+                this.g = IN_FRAME % 2 == 0 ? 1 : -1;
+                for (int i = 0; i < this.T15.Length; i++)
+                {
+                    this.T15[i] = this.g * (this.lMatrix[i] - this.mean) + 2 / 9.0;
+                }
+                this.vMatrix = Function.FormVMatrix(this.T15);               
+                this.Xi = 0;
+                for (int i = 0; i < this.vMatrix.Length; i++)
+                {
+                    this.Xi += Math.Pow(this.vMatrix[i] - this.frames.Count * PI_15[i], 2) / (this.frames.Count * PI_15[i]);
+                }
+                this.PValue = SpecialFunction.igamc(3, this.Xi / 2.0);
             }
         }
     }

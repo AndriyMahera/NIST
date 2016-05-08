@@ -72,7 +72,7 @@ namespace NIST_OOP
                 this.theLongest += this.binaryStrLong;
 
             for (int i = 0; i < 20; i++)
-                this.realTheLongest += this.theLongest;
+                this.realTheLongest += this.binaryStrLong;
 
             Tests.Test1 test1 = new Tests.Test1(this.binaryStr);
             test1.PerformTest(); TextBox1.Text = test1.PVALUE.ToString("F6");
@@ -115,6 +115,9 @@ namespace NIST_OOP
 
             Tests.Test14 test14 = new Tests.Test14(this.realTheLongest);
             test14.PerformTest(); TextBox14.Text = test14.PVALUE.ToString("F6");
+
+            Tests.Test15 test15 = new Tests.Test15(this.realTheLongest);
+            test15.PerformTest(); TextBox15.Text = test15.PVALUE.ToString("F6");
 
             this.FillCheckBox();
         }

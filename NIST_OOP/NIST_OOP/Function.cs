@@ -622,6 +622,31 @@ namespace NIST_OOP
             return res;
         }
 
+        public static double[] FormVMatrix(double [] T15)
+        {
+            double[] V = new double[7];
+            foreach (double el in T15)
+            {
+                if (el <= -2.5) V[0] += 1;
+                else if (el <= -1.5) V[1] += 1;
+                else if (el <= -0.5) V[2] += 1;
+                else if (el <= 0.5) V[3] += 1;
+                else if (el <= 1.5) V[4] += 1;
+                else if (el <= 2.5) V[5] += 1;
+                else V[6] += 1;
+            }
+            return V;
+        }
+        public static byte[] StrToByte(string str)
+        {
+            byte[] output = new byte[str.Length];
+            for (int i = 0; i < str.Length; i++)
+            {
+                output[i] = Byte.Parse(str[i].ToString());
+            }
+            return output;
+        }
+
 
     }
 }
