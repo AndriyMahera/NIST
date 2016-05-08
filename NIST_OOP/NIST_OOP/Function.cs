@@ -431,5 +431,197 @@ namespace NIST_OOP
             }
             return ldouble;
         }
+        //розрахунок ф
+        public static double CalculateF(List<double> input)
+        {
+            double f = 0;
+            foreach (double el in input)
+            {
+                f += el * Math.Log(el, Math.E);
+            }
+            return f;
+        }
+
+        //знайти максимальну суму
+        public static double FindMaxSum(List<double> input, int mode, List<double> sequence)
+        {
+            double MaxSum = double.MinValue;
+            double Sum = 0;
+            switch (mode)
+            {
+                case 0:
+                    for (int i = 0; i < input.Count; i++)
+                    {
+                        Sum += input[i];
+                        MaxSum = Math.Max(Sum, MaxSum);
+                        if (sequence != null) sequence.Add(Sum);
+                    }
+                    break;
+                case 1:
+                    for (int i = input.Count - 1; i > 0; i--)
+                    {
+                        Sum += input[i];
+                        MaxSum = Math.Max(Sum, MaxSum);
+                        if (sequence != null) sequence.Add(Sum);
+                    }
+                    break;
+                default: break;
+            }
+            return MaxSum;
+        }
+        public static double FINDSum(double z, double end,List<double> CumList)
+        {
+            double startK1 = (-CumList.Count / z + 1) * 4;
+            double sum = 0;
+            for (int i = (int)startK1; i < (int)end; i++)
+            {
+                double arg1 = (4 * i + 1) * z / Math.Sqrt(CumList.Count);
+                double arg2 = (4 * i - 1) * z / Math.Sqrt(CumList.Count);
+                sum += (SpecialFunction.Phi(arg1) - SpecialFunction.Phi(arg2));
+            }
+            return sum;
+        }
+        public static double FINDSum2(double z, double end, List<double> CumList)
+        {
+            double startK2 = (-CumList.Count / z - 3) * 4;
+            double sum = 0;
+            for (int i = (int)startK2; i < (int)end; i++)
+            {
+                double arg1 = (4 * i + 3) * z / Math.Sqrt(CumList.Count);
+                double arg2 = (4 * i + 1) * z / Math.Sqrt(CumList.Count);
+                sum += (SpecialFunction.Phi(arg1) - SpecialFunction.Phi(arg2));
+            }
+            return sum;
+        }
+
+        //Поділ на цикли(краї - нулі)
+        public static void DivideIntoCycles(List<double> input, List<double[]> result)
+        {
+            double h = input[input.Count - 1];
+            bool isMidst = false;
+            List<double> list = new List<double>();
+            for (int i = 0; i < input.Count; i++)
+            {
+                if (input[i] == 0 && i < input.Count - 1)
+                {
+                    isMidst = true;
+                    i += 1;
+                }
+                if (isMidst)
+                {
+                    //глюк з індексом
+                    while (input[i] != 0)
+                    {
+                        list.Add(input[i]);
+                        i += 1;
+                    }
+                    i -= 1;
+                    result.Add(list.ToArray());
+                    list.Clear();
+                    isMidst = false;
+                }
+            }
+        }
+        //Заповнення матриці появ(стан/цикл) max - верхня/нижня межа матриці<inputM сама матриця  - <inputL -  список масивів(циклів)
+        public static void FillMatrixApp(ref double[,] inputM, List<double[]> inputL, int max)
+        {
+            //Кількість входжень
+            Dictionary<double, int> dict;
+            for (int i = 0; i < inputM.GetLength(1); i++)
+            {
+                dict = UniquesDict(inputL[i].ToList());
+                for (int j = 0; j < inputM.GetLength(0); j++)
+                {
+                    foreach (var kp in dict)
+                    {
+                        int k = j < max ? j - max : j - max + 1;
+                        if (kp.Key == k)
+                        {
+                            inputM[j, i] = kp.Value;
+                        }
+
+                    }
+                }
+            }
+        }
+        //Словник унікальних
+        public static Dictionary<T, int> UniquesDict<T>(List<T> list)
+        {
+            List<int> result = new List<int>();
+            Dictionary<T, int> counts = new Dictionary<T, int>();
+            List<T> uniques = new List<T>();
+            foreach (T val in list)
+            {
+                if (counts.ContainsKey(val))
+                    counts[val]++;
+                else
+                {
+                    counts[val] = 1;
+                    uniques.Add(val);
+                }
+            }
+
+            return counts;
+        }
+        //Заповнення матриці кількості появ(стан/кількість від 0 до 5)
+        public static void FillMatrixAmount(double[,] input, ref double[,] result)
+        {
+            for (int i = 0; i < input.GetLength(0); i++)
+            {
+                for (int j = 0; j < input.GetLength(1); j++)
+                {
+                    if (input[i, j] < 6)
+                        result[i, (int)input[i, j]] += 1;
+                }
+            }
+        }
+        //матриця ХІ
+        public static double[] FormXiMatrix(double[,] input, double[,] coef, double j)
+        {
+            double[] output = new double[input.GetLength(0)];
+            for (int i = 0; i < output.Length; i++)
+            {
+                double Xi = 0;
+                for (int k = 0; k < input.GetLength(1); k++)
+                {
+                    int ind = i < 4 ? coef.GetLength(0) - i - 1 : i - coef.GetLength(0);
+                    Xi += (Math.Pow(input[i, k] - j * coef[ind, k], 2) / j / coef[ind, k]);
+                }
+                output[i] = Xi;
+            }
+            return output;
+        }
+        //матриця PVAlue13
+        public static double[] FormPValueMatrix(double[] input)
+        {
+            double[] output = new double[input.Length];
+            for (int i = 0; i < input.Length; i++)
+            {
+                output[i] = SpecialFunction.igamc(2.5, input[i] / 2.0);
+            }
+            return output;
+        }
+
+        //знайти суму по рядках
+        public static void FindRowSum(ref double[] result, double[,] input)
+        {
+            for (int i = 0; i < result.Length; i++)
+            {
+
+                for (int j = 0; j < input.GetLength(1); j++)
+                {
+                    result[i] += input[i, j];
+                }
+            }
+        }
+        //аргумент для теста 14
+        public static double ArgumentToTest14(int i, double[] input, int max, int j)
+        {
+            int x = i < max ? i - max : i - max + 1;
+            double res = Math.Abs(input[i] - j) / Math.Sqrt(2 * j * (4 * Math.Abs(x) - 2));
+            return res;
+        }
+
+
     }
 }

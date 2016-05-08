@@ -24,7 +24,7 @@ namespace NIST_OOP
     {
         private string mainString,mainStringLong;
         private const double standardP = 0.01;
-        private string binaryStr,binaryStrLong,theLongest;
+        private string binaryStr,binaryStrLong,theLongest,realTheLongest;
         private List<int> digitStr = new List<int>(),digitStrLong=new List<int>();
 
         public MainWindow()
@@ -71,6 +71,9 @@ namespace NIST_OOP
             for (int i = 0; i < 6; i++)
                 this.theLongest += this.binaryStrLong;
 
+            for (int i = 0; i < 20; i++)
+                this.realTheLongest += this.theLongest;
+
             Tests.Test1 test1 = new Tests.Test1(this.binaryStr);
             test1.PerformTest(); TextBox1.Text = test1.PVALUE.ToString("F6");
 
@@ -100,6 +103,18 @@ namespace NIST_OOP
 
             Tests.Test10 test10 = new Tests.Test10(this.binaryStr);
             test10.PerformTest(); TextBox10.Text = test10.PVALUE.ToString("F6");
+
+            Tests.Test11 test11 = new Tests.Test11(this.binaryStr);
+            test11.PerformTest(); TextBox11.Text = test11.PVALUE.ToString("F6");
+
+            Tests.Test12 test12 = new Tests.Test12(this.binaryStr);
+            test12.PerformTest(); TextBox12.Text = test12.PVALUE.ToString("F6");
+
+            Tests.Test13 test13 = new Tests.Test13(this.realTheLongest);
+            test13.PerformTest(); TextBox13.Text = test13.PVALUE.ToString("F6");
+
+            Tests.Test14 test14 = new Tests.Test14(this.realTheLongest);
+            test14.PerformTest(); TextBox14.Text = test14.PVALUE.ToString("F6");
 
             this.FillCheckBox();
         }
