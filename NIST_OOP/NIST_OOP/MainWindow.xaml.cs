@@ -17,9 +17,6 @@ using System.IO;
 
 namespace NIST_OOP
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private string mainString,mainStringLong;

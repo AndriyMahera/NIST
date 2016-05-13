@@ -316,7 +316,6 @@ namespace NIST_OOP
             {
 
                 this.normalArr=Function.NormalizeArray(this.str);
-                int h = this.str.Length;
                 this.listSum.Add(0);
                 Function.FindMaxSum(this.normalArr, 0, this.listSum);
                 this.listSum.Add(0);
@@ -386,7 +385,6 @@ namespace NIST_OOP
             public override void PerformTest()
             {
                 this.frames=Function.CutOnFrames(this.str, IN_FRAME);
-                int yutr = this.str.Length;
                 this.lMatrix = new double[this.frames.Count];
                 for (int i = 0; i < this.lMatrix.Length; i++)
                 {
